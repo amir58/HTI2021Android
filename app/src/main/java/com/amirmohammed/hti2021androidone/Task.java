@@ -23,10 +23,21 @@ public class Task {
     @ColumnInfo(name = "status")
     private String status = "active"; // active - done - archive
 
-    public Task(String title, String date, String time) {
+    private User user;
+
+    public Task(String title, String date, String time, User user) {
         this.title = title;
         this.date = date;
         this.time = time;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getId() {

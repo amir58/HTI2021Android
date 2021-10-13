@@ -11,16 +11,22 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
- @Query("SELECT * FROM tasks")
- List<Task> getTasks();
+    @Query("SELECT * FROM tasks WHERE status = 'active'")
+    List<Task> getActiveTasks();
 
- @Insert
- void insertTask(Task task);
+    @Query("SELECT * FROM tasks WHERE status = 'done'")
+    List<Task> getDoneTasks();
 
- @Update
- void updateTask(Task task);
+    @Query("SELECT * FROM tasks WHERE status = 'archive'")
+    List<Task> getArchiveTasks();
 
- @Delete
- void deleteTask(Task task);
+    @Insert
+    void insertTask(Task task);
+
+    @Update
+    void updateTask(Task task);
+
+    @Delete
+    void deleteTask(Task task);
 
 }

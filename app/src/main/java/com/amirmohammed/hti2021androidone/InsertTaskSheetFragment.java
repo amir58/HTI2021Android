@@ -18,6 +18,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class InsertTaskSheetFragment extends BottomSheetDialogFragment {
 
     FragmentInsertTaskSheetBinding binding;
+    IInsertTask iInsertTask;
+
+    public InsertTaskSheetFragment(IInsertTask iInsertTask) {
+     this.iInsertTask = iInsertTask;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,12 +61,16 @@ public class InsertTaskSheetFragment extends BottomSheetDialogFragment {
                     return;
                 }
 
-                Task task = new Task(title, date, time);
+                User user = new User(1, "Amir");
+
+                Task task = new Task(title, date, time, user);
 
                 TasksDatabase.getInstance(requireContext())
                         .taskDao().insertTask(task);
 
                 dismiss();
+
+                iInsertTask.onTaskInserted();
             }
         });
 

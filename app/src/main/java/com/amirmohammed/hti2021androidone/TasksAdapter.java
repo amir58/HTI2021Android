@@ -2,6 +2,7 @@ package com.amirmohammed.hti2021androidone;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,29 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskHolder> 
 
         Task task = taskList.get(position);
         holder.binding.setTask(task);
+
+
+        holder.binding.done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                task.setStatus("done");
+                TasksDatabase.getInstance(v.getContext()).taskDao().updateTask(task);
+                taskList.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
+
+        holder.binding.archive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                task.setStatus("archive");
+                TasksDatabase.getInstance(v.getContext()).taskDao().updateTask(task);
+                taskList.remove(position);
+                notifyItemRemoved(position);
+            }
+        });
+
+
     }
 
     @Override

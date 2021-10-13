@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,6 +18,11 @@ import java.util.List;
 public class TasksFragment extends Fragment {
 
     RecyclerView recyclerView;
+    String status;
+
+    public TasksFragment(String status) {
+        this.status = status;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,9 +35,24 @@ public class TasksFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView) view;
+        List<Task> taskList;
 
-        List<Task> taskList = TasksDatabase.getInstance(requireContext())
-                .taskDao().getTasks();
+        switch (status) {
+            case "active":
+                taskList = TasksDatabase.getInstance(requireContext())
+                        .taskDao().getActiveTasks();
+                break;
+            case "done":
+                taskList = TasksDatabase.getInstance(requireContext())
+                        .taskDao().getDoneTasks();
+                break;
+            case "archive":
+                taskList = TasksDatabase.getInstance(requireContext())
+                        .taskDao().getArchiveTasks();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + status);
+        }
 
         TasksAdapter tasksAdapter = new TasksAdapter(taskList, requireContext());
 
