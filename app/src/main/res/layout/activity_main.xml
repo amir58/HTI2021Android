@@ -13,8 +13,8 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <FrameLayout
-            android:id="@+id/frame_layout"
+        <ImageView
+            android:id="@+id/image_view"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
             android:layout_width="match_parent"
@@ -40,5 +40,6 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
 
