@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.amirmohammed.hti2021androidone.databinding.ActivityLoginBinding;
+import com.amirmohammed.hti2021androidone.maps.MapHomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -49,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Log.i(TAG, "onComplete: " + task.getResult().getUser().getUid());
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MapHomeActivity.class);
                             startActivity(intent);
                         }
                         else{

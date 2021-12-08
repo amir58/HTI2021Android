@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 .document(firebaseAuth.getCurrentUser().getUid())
                 .collection("myTasks")
                 .document(taskId)
-                .update(map);
+                .delete();
     }
 
     private void getUserData() {
