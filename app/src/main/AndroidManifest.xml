@@ -40,7 +40,7 @@
             android:name=".maps.MapHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
